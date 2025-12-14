@@ -1,1 +1,1 @@
-# LegacyCommynications
+# LegacyCommunications
