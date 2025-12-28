@@ -18,13 +18,13 @@
     header {
         background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
         color: white;
-        padding: 1rem 0;
+        padding: 1.5rem 0;
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        border-bottom: 2px solid #d4af37;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        border-bottom: 3px solid #d4af37;
     }
     
     nav {
@@ -36,41 +36,67 @@
         padding: 0 2rem;
     }
     
-    .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
+    .logo-container {
         display: flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 1rem;
     }
     
     .logo-img {
-        height: 50px;
+        height: 60px;
         width: auto;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+    
+    .company-info {
+        display: flex;
+        flex-direction: column;
     }
     
     .logo-text {
         color: #d4af37;
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    
+    .tagline {
+        color: #d4af37;
+        font-size: 0.8rem;
+        font-style: italic;
     }
     
     .nav-links {
-        display: flex;
+        display: none;
         gap: 2rem;
         list-style: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    
+    .nav-links.active { 
+        display: flex; 
     }
     
     .nav-links a {
-        color: white;
-        text-decoration: none;
-        transition: color 0.3s;
+        display: block;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     
-    .nav-links a:hover {
-        color: #d4af37;
+    .nav-links a::after {
+        display: none;
     }
     
     .mobile-menu-toggle {
-        display: none;
+        display: block;
         background: none;
         border: none;
         color: #d4af37;
@@ -82,33 +108,74 @@
     .hero {
         background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
         color: white;
-        padding: 150px 2rem 100px;
+        padding: 180px 2rem 100px;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 1;
     }
     
     .hero h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         margin-bottom: 1rem;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     }
     
     .hero p {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         margin-bottom: 2rem;
+        opacity: 0.95;
     }
     
-    .cta-button {
-        background: #d4af37;
+    .experience-badge {
+        background: linear-gradient(135deg, #d4af37 0%, #f4c542 100%);
         color: #0a1628;
         padding: 1rem 2.5rem;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 600;
+        border-radius: 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
         display: inline-block;
+        margin-top: 1rem;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        transform: translateY(0);
         transition: transform 0.3s;
     }
     
+    .experience-badge:hover {
+        transform: translateY(-5px);
+    }
+    
+    .cta-button {
+        background: linear-gradient(135deg, #d4af37 0%, #f4c542 100%);
+        color: #0a1628;
+        padding: 1.2rem 3rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        display: inline-block;
+        transition: all 0.3s;
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+    
     .cta-button:hover {
-        transform: translateY(-3px);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
     }
     
     .container {
@@ -117,46 +184,196 @@
     }
     
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         text-align: center;
         margin-bottom: 3rem;
         color: #0a1628;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #d4af37, transparent);
     }
     
     section {
-        padding: 80px 2rem;
+        padding: 100px 2rem;
+    }
+    
+    .slideshow-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 100px 2rem;
+    }
+    
+    .slideshow-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    }
+    
+    .slide {
+        display: none;
+        width: 100%;
+    }
+    
+    .slide.active {
+        display: block;
+        animation: fadeIn 1s;
+    }
+    
+    .slide img {
+        width: 100%;
+        height: 550px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(1.05); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .slide-nav {
+        text-align: center;
+        padding: 30px 0 0 0;
+    }
+    
+    .dot {
+        height: 16px;
+        width: 16px;
+        margin: 0 8px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+    }
+    
+    .dot.active {
+        background-color: #d4af37;
+        transform: scale(1.3);
+        border-color: #d4af37;
+    }
+    
+    .dot:hover {
+        background-color: #d4af37;
+    }
+    
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -30px;
+        padding: 20px;
+        color: white;
+        font-weight: bold;
+        font-size: 28px;
+        transition: 0.3s;
+        border-radius: 0 5px 5px 0;
+        background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+        user-select: none;
+    }
+    
+    .next {
+        right: 0;
+        border-radius: 5px 0 0 5px;
+    }
+    
+    .prev:hover, .next:hover {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(244, 197, 66, 0.9));
+    }
+    
+    .about {
+        background: white;
+        position: relative;
+    }
+    
+    .about-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .about-content p {
+        font-size: 1.25rem;
+        line-height: 2;
+        color: #555;
+        margin-bottom: 1.8rem;
+        text-align: left;
     }
     
     .services-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
     }
     
     .service-card {
-        background: #f8f9fa;
-        padding: 2rem;
-        border-radius: 10px;
-        border-left: 4px solid #d4af37;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        border-left: 5px solid #d4af37;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
     }
     
     .service-card h3 {
         color: #0a1628;
         margin: 1rem 0;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+    }
+    
+    .service-card p {
+        color: #666;
+        line-height: 1.8;
     }
     
     .contact {
         background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
         color: white;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .contact::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid2" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(212,175,55,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid2)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .contact-content {
+        position: relative;
+        z-index: 1;
     }
     
     .contact-info {
         display: flex;
         justify-content: center;
-        gap: 3rem;
-        margin: 2rem 0;
+        gap: 4rem;
+        margin: 3rem 0;
         flex-wrap: wrap;
     }
     
@@ -167,40 +384,42 @@
     .contact-item strong {
         display: block;
         color: #d4af37;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
     }
 
     .contact-item span {
         color: white;
+        font-size: 1.1rem;
+    }
+    
+    .contact-item a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .contact-item a:hover {
+        color: #d4af37;
     }
     
     footer {
         background: #000;
         color: white;
         text-align: center;
-        padding: 2rem;
+        padding: 2.5rem;
     }
     
     @media (max-width: 768px) {
-        .hero h1 { font-size: 2rem; }
-        .mobile-menu-toggle { display: block; }
-        .nav-links {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2940 100%);
-            flex-direction: column;
-            gap: 0;
-            padding: 1rem 0;
+        .hero h1 { font-size: 2.2rem; }
+        .slide img {
+            height: 350px;
         }
-        .nav-links.active { display: flex; }
-        .nav-links a {
-            display: block;
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .section-title {
+            font-size: 2rem;
+        }
+        .logo-img {
+            height: 50px;
         }
     }
 </style>
@@ -210,14 +429,18 @@
 <body>
     <header>
         <nav>
-            <div class="logo">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczPDA4WO2FaDAkDnzdqhOIptga1GCSJ5afbDZkL6kRMoIc8EHchm8LZ-pGZlOoV8QfOETSgO51M1ZphMcFwliBY5D3WYC6AxQGiFRccjoGFXOMFaaS-t8AjLV5KZnO1OcBxFjfhoT0BMBrYkBXE76_nQvw=s200" alt="Legacy Communications" class="logo-img" onerror="this.style.display='none'">
-                <span class="logo-text">Legacy Communications</span>
+            <div class="logo-container">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPDA4WO2FaDAkDnzdqhOIptga1GCSJ5afbDZkL6kRMoIc8EHchm8LZ-pGZlOoV8QfOETSgO51M1ZphMcFwliBY5D3WYC6AxQGiFRccjoGFXOMFaaS-t8AjLV5KZnO1OcBxFjfhoT0BMBrYkBXE76_nQvw=s200" alt="Legacy Communications Logo" class="logo-img">
+                <div class="company-info">
+                    <span class="logo-text">Legacy Communications</span>
+                    <span class="tagline">17 Years of Expert Service</span>
+                </div>
             </div>
             <button class="mobile-menu-toggle" aria-label="Menu">☰</button>
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -225,115 +448,129 @@
 
 ```
 <section class="hero">
-    <div class="container">
-        <h1>Professional Network & Telecommunications Installation</h1>
-        <p>Expert cabling, network room setups, and telecommunications infrastructure</p>
+    <div class="hero-content">
+        <h1>Professional Network & Telecommunications</h1>
+        <p>Expert infrastructure solutions built with care and precision</p>
+        <div class="experience-badge">17 Years of Professional Experience</div>
+        <br><br>
         <a href="#contact" class="cta-button">Get a Free Quote</a>
     </div>
 </section>
 
-<section style="padding: 80px 2rem; background: #f8f9fa;">
-    <div class="container" style="max-width: 1000px;">
-        <h2 class="section-title">Featured Project</h2>
-        <div style="background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
-            <img src="https://lh3.googleusercontent.com/pw/AP1GczOdp94mdSkS-n1rsuUGTQLs5jxpCB8ynwAh8KrJutOalXXOgBvuculzUz9-o3LgdRNsce9_wY76ktKAXetV-y2U2d50lLizScKEIk3UoXXilgMyis6JjQxCpxZzxEMXQMLdp4Jv_5b5j0ovkvDAI8C0Xw=w2000" alt="Network Installation" style="width: 100%; border-radius: 10px; margin-bottom: 2rem;">
-            <h3 style="font-size: 2rem; color: #0a1628; margin-bottom: 1rem; text-align: center;">Professional Network Infrastructure</h3>
-            <p style="font-size: 1.15rem; color: #666; line-height: 1.9; text-align: center;">Complete network installation featuring structured cabling, professional cable management, and enterprise-grade equipment setup.</p>
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <p>We're a small, family-owned business bringing 17 years of hands-on experience to every job. While our company is new, our expertise isn't—we've been perfecting the craft of network installation for nearly two decades.</p>
+            <p>We take real pride in our work. When we install your cabling or set up your network, we're not just completing a job—we're building something that's going to serve you reliably for years to come. That's why we pay attention to every detail, from the way we route cables to how we organize your equipment.</p>
+            <p>Being a small business means we can give you the personal attention and care that larger companies can't. You'll work directly with experienced technicians who genuinely care about getting it right. We're not satisfied until you're completely happy with the results.</p>
         </div>
     </div>
 </section>
 
-<section id="portfolio" style="padding: 60px 2rem; background: white;">
+<section id="portfolio" class="slideshow-section">
     <div class="container">
-        <h2 class="section-title">Our Work</h2>
-        <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Professional installations showcasing our expertise</p>
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <a href="https://photos.app.goo.gl/rxYwXa1uUq5gTefJ9" target="_blank" class="cta-button">View Full Portfolio Gallery</a>
+        <h2 class="section-title">Our Portfolio</h2>
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczOded4tLs8FvLZwUG9kO4Hzd866M7zBCecmlAbSCLZ6AAOp3AdJHDDAXfS7yflv5UYlPq5_W9RvO2rW9eOgJZk01wPeqW8E_6NtUP9ZeQ7X-0JktC0I=w800" alt="Fiber Optic Installation">
+            </div>
+            <div class="slide">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMITa5KChuHpQm6lNb15QCRUoclodjLrvMFOxd6NgYxuUvEi0V_yJZ7a9xycFOV37YNRFMCUCxZRfgcI1vNeCLNYCeiv4-mS886Gn4pi7iF0eO0HEhw=w800" alt="Network Equipment">
+            </div>
+            <div class="slide">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczOxuRXwDOo41QBzAquTnTml8Hj9v3qWAV2N2yDnpe1CS_EVtvEolgA9TMHBLu5cuj_Y4K_0Xm2bCKxF4J1WPjfIwTpXabhzEwI4i8Iv5lTKF7pl1BDn=w800" alt="Cable Management">
+            </div>
+            <div class="slide">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczP_AAGGyyA_CQh4nfUs96B9d-4wh7tH-AMHtiaIDZfSTXw7NL2oSpRkyEMTMJgERnt2QjJsnVPsN6l-Qr7WODCuWMokWoEr9_mISChxYGQW6lvhrY9s=w800" alt="Telecom Installation">
+            </div>
+            <div class="slide">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNcYeMPRcbU0ZFPEgQ_NeDxfJPiHTd8gfYqKEMAWmV40nKia4_jgXzMjcvSd2LzTo82fo-b2JXGYiTn_iYZNQgDmxzh9KZokwuwEZniiM0LkkqaWyug=w800" alt="Equipment Setup">
+            </div>
+            <div class="slide">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNPT7hu2NwZSTjrs-rDxqJmPQwTioep5_qjOEsjpGd6gzyOEEJwdB6XczJdq8A7nObRkswY7_eRmw18GP3kqFmqyJ849WN11lk9pk-vCAOqymq60x6W=w800" alt="Network Installation">
+            </div>
+            
+            <a class="prev" onclick="changeSlide(-1)">❮</a>
+            <a class="next" onclick="changeSlide(1)">❯</a>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczOded4tLs8FvLZwUG9kO4Hzd866M7zBCecmlAbSCLZ6AAOp3AdJHDDAXfS7yflv5UYlPq5_W9RvO2rW9eOgJZk01wPeqW8E_6NtUP9ZeQ7X-0JktC0I=w800" alt="Fiber optic" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczMITa5KChuHpQm6lNb15QCRUoclodjLrvMFOxd6NgYxuUvEi0V_yJZ7a9xycFOV37YNRFMCUCxZRfgcI1vNeCLNYCeiv4-mS886Gn4pi7iF0eO0HEhw=w800" alt="Network equipment" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczOxuRXwDOo41QBzAquTnTml8Hj9v3qWAV2N2yDnpe1CS_EVtvEolgA9TMHBLu5cuj_Y4K_0Xm2bCKxF4J1WPjfIwTpXabhzEwI4i8Iv5lTKF7pl1BDn=w800" alt="Cable management" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczP_AAGGyyA_CQh4nfUs96B9d-4wh7tH-AMHtiaIDZfSTXw7NL2oSpRkyEMTMJgERnt2QjJsnVPsN6l-Qr7WODCuWMokWoEr9_mISChxYGQW6lvhrY9s=w800" alt="Telecom module" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNcYeMPRcbU0ZFPEgQ_NeDxfJPiHTd8gfYqKEMAWmV40nKia4_jgXzMjcvSd2LzTo82fo-b2JXGYiTn_iYZNQgDmxzh9KZokwuwEZniiM0LkkqaWyug=w800" alt="Equipment" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
-            <div style="overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczNPT7hu2NwZSTjrs-rDxqJmPQwTioep5_qjOEsjpGd6gzyOEEJwdB6XczJdq8A7nObRkswY7_eRmw18GP3kqFmqyJ849WN11lk9pk-vCAOqymq60x6W=w800" alt="Residential network" style="width: 100%; height: 280px; object-fit: cover;">
-            </div>
+        <div class="slide-nav">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://photos.app.goo.gl/rxYwXa1uUq5gTefJ9" target="_blank" class="cta-button">View Full Portfolio Gallery</a>
         </div>
     </div>
 </section>
 
-<section id="services" style="padding: 80px 2rem; background: #f8f9fa;">
+<section id="services" style="padding: 100px 2rem; background: white;">
     <div class="container">
         <h2 class="section-title">Our Services</h2>
         <div class="services-grid">
             <div class="service-card">
-                <h3>🔌 Structured Cabling</h3>
-                <p>Professional installation of Cat5e, Cat6, Cat6a, and fiber optic cabling.</p>
+                <h3>Structured Cabling</h3>
+                <p>Professional installation of Cat5e, Cat6, Cat6a, and fiber optic cabling for data and voice networks.</p>
             </div>
             <div class="service-card">
-                <h3>📡 Network Room Installation</h3>
-                <p>Complete network room design including rack mounting and patch panels.</p>
+                <h3>Network Room Installation</h3>
+                <p>Complete network room design including rack mounting, patch panels, and cable management systems.</p>
             </div>
             <div class="service-card">
-                <h3>📞 Telecommunications</h3>
-                <p>Full telecommunications infrastructure including phone systems and VoIP.</p>
+                <h3>Telecommunications</h3>
+                <p>Full telecommunications infrastructure including phone systems, PBX installation, and VoIP setup.</p>
             </div>
             <div class="service-card">
-                <h3>🛠️ Cable Management</h3>
-                <p>Professional cable organization, labeling, and management solutions.</p>
+                <h3>Cable Management</h3>
+                <p>Professional cable organization, labeling, and management solutions for clean and efficient systems.</p>
             </div>
             <div class="service-card">
-                <h3>🔍 Testing & Certification</h3>
-                <p>Comprehensive testing ensuring compliance with TIA/EIA standards.</p>
+                <h3>Testing & Certification</h3>
+                <p>Comprehensive testing and certification ensuring compliance with industry TIA/EIA standards.</p>
             </div>
             <div class="service-card">
-                <h3>🏢 Enterprise Solutions</h3>
-                <p>Large-scale network infrastructure for commercial facilities.</p>
+                <h3>Enterprise Solutions</h3>
+                <p>Large-scale network infrastructure installation for commercial and industrial facilities.</p>
             </div>
         </div>
     </div>
 </section>
 
 <section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title" style="color: white;">Get In Touch</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to upgrade your network infrastructure?</p>
-        
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>Phone</strong>
-                <span>+1 (714) 791-6462</span>
+    <div class="contact-content">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get In Touch</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Ready to upgrade your network infrastructure?</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Phone</strong>
+                    <span><a href="tel:+16196638735">+1 (619) 663-8735</a></span>
+                </div>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    <span>admin@legacycommunications.us</span>
+                </div>
+                <div class="contact-item">
+                    <strong>Service Area</strong>
+                    <span>Southern & Northern California</span>
+                </div>
             </div>
-            <div class="contact-item">
-                <strong>Email</strong>
-                <span>admin@legacycommunications.us</span>
+            
+            <div style="margin-top: 3rem;">
+                <a href="#contact" class="cta-button">Contact Us Today</a>
             </div>
-            <div class="contact-item">
-                <strong>Service Area</strong>
-                <span>Nationwide Coverage</span>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem;">
-            <a href="mailto:admin@legacycommunications.us?subject=Network%20Installation%20Quote%20Request" class="cta-button">Request a Quote</a>
         </div>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2024 Legacy Communications | Professional Network & Telecommunications Installation</p>
+    <p>&copy; 2025 Legacy Communications | Professional Network & Telecommunications Installation</p>
 </footer>
 
 <script>
@@ -349,6 +586,41 @@
             navLinks.classList.remove('active');
         });
     });
+    
+    // Slideshow functionality
+    let slideIndex = 1;
+    showSlide(slideIndex);
+    
+    // Auto advance slides every 5 seconds
+    setInterval(function() {
+        changeSlide(1);
+    }, 5000);
+    
+    function changeSlide(n) {
+        showSlide(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+        showSlide(slideIndex = n);
+    }
+    
+    function showSlide(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        
+        slides[slideIndex - 1].classList.add("active");
+        dots[slideIndex - 1].classList.add("active");
+    }
 </script>
 ```
 
